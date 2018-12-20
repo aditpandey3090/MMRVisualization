@@ -1,0 +1,15 @@
+<div class="PC" #visContainer>
+  <!--<input [(ngModel)]="file1">-->
+  <!--<input [(ngModel)]="file2">-->
+
+  <select [(ngModel)]="file1" >
+    <option  *ngFor="let field of filenames" [attr.value]=field>{{field}} </option>
+  </select>
+  <select [(ngModel)]="file2" >
+    <option  *ngFor="let field of filenames" [attr.value]=field>{{field}} </option>
+  </select>
+
+  <button (click)="loadData()" >T Test</button>
+
+  <label>PValue: {{ttestOutput}}</label>
+</div>

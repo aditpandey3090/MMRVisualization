@@ -1,0 +1,9 @@
+.displayFileName{
+  font-size: 0.8em;
+  margin:1em;
+}
+
+.visualization{
+  display: flex;
+  flex-wrap: wrap;
+}

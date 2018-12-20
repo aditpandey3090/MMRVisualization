@@ -1,0 +1,50 @@
+<select [(ngModel)]="mainFile" #selectBox (change)="changeFile($event.target.value)">
+  <option  *ngFor="let field of fileNames" [attr.value]=field>{{field}} </option>
+</select>
+
+<select #selectBox1 [(ngModel)]="addedFile" (ngModelChange)="pushFile()"   (change)="addFile($event.target.value)">
+  <option  *ngFor="let field of fileNames" [attr.value]=field >{{field}} </option>
+</select>
+
+<select #selectVisualization (change)="selectBoxInput($event.target.value)"  >
+  <option value="BarChart"> BarChart</option>
+  <option value="TableView">Table </option>
+  <option value="AccuracyView">Accuracy </option>
+  <option value="PC">Parallel Coordinate </option>
+</select>
+
+<div style="display: block">
+<label class="displayFileName"> Main File:{{mainFile}}   </label>
+<label *ngFor="let field of allAdditionalFiles"   class="displayFileName"> Added File:{{field}} </label>
+
+
+</div>
+
+
+<div class="visualization">
+  <div style="width: 50%"  *ngIf="barChart" class="PCVisualization">
+    <app-barchart  *ngIf="chartData" [data]="chartData"></app-barchart>
+    <!--<app-distributioncomparison  *ngIf="chartData" [data]="chartData"></app-distributioncomparison>-->
+
+  </div>
+
+  <div style="width: 100%;height: 100%;overflow-y: scroll;"  *ngIf="tableView" class="TableView">
+    <app-table  *ngIf="chartData" [data]="chartData"></app-table>
+  </div>
+
+  <div style="width: 100%" *ngIf="accuracyViz" class="AccuracyViz">
+    <app-accuracy-viz  *ngIf="chartData" [data]="chartData"></app-accuracy-viz>
+  </div>
+
+
+  <div style="width: 100%" *ngIf="PC" class="PC">
+    <app-parallelcoord  *ngIf="chartData" [data]="chartData"></app-parallelcoord>
+  </div>
+</div>
+<!--<a (click)="downloadJsonData()" id="downloadAnchorElem" >test</a>-->
+
+
+
+
+
+

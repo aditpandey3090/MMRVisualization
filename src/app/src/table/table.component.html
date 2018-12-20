@@ -1,0 +1,20 @@
+<div class="TableContainer">
+
+  <input [(ngModel)]="searchText" placeholder="search text goes here">
+  <!--<ul>-->
+    <!--<li *ngFor="let row of data| filter : searchText">-->
+      <!--{{row.feedback}}-->
+    <!--</li>-->
+  <!--</ul>-->
+
+  <table>
+  <tr  *ngFor="let row of data | filter : searchText" (click)="rowClick(row)">
+    <td>{{row.accuracy}}</td>
+    <td>{{row.sex}}</td>
+    <td>{{row.feedback}}</td>
+
+
+  </tr>
+</table>
+</div>
+

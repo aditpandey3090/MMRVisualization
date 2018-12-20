@@ -1,0 +1,24 @@
+<div class="parallel-coordinate-vis" #visContainer>
+
+
+</div>
+
+<!--https://stackoverflow.com/questions/35160413/angular-2-inline-style-with-ngfor#comment58040120_35160450-->
+
+<div class="legendChart" align="center" style="display: flex;padding-left: 15%" >
+  <input id="checkBox" type="checkbox" (change)="dummyFunction($event)" >
+
+  <div  (mouseover)="filterByStimuli($event)" (mouseout)="reset()" style="text-align: center;height:20px; width:10%" *ngFor="let color of colorList.slice(0,7);let  i = index" [style.background-color]="color" >
+
+  {{stimuliSet[i]}}
+  </div>
+
+</div>
+
+<div align="center">
+<svg>
+  <text> Filter circle or squares</text>
+  <circle (mouseover)="filterByTypeOfResponse($event)" (mouseout)="reset()"  fill="#F88379"  r="20px" cx="50" cy="50" style="fill:#F88379"></circle>
+  <rect (mouseover)="filterByTypeOfResponse($event)" (mouseout)="reset()" height="40px" width="40px" x="80" y="30" style="fill:#B0E0E6"></rect>
+</svg>
+</div>

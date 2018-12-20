@@ -1,0 +1,56 @@
+<div class="PC" #visContainer>
+  <!--Figure out if this component should go to PC, I think so, so take it there-->
+
+
+<svg style="margin:1em">
+</svg>
+
+  <div class="controls">
+    <legend> Controls</legend>
+    <div class="column" >
+      <label>
+        <input type="checkbox" name="active"  [(ngModel)]="activeCheckBox" (ngModelChange)="onChange($event)">
+        Mean
+      </label>
+      <label>
+        <input type="checkbox" name="active"  [(ngModel)]="activeMedia" (ngModelChange)="onChangeMedian($event)">
+        Median
+      </label>
+
+    </div>
+
+
+
+
+  <div class="slidecontainer column" >
+    <label>
+      <input type="checkbox" name="active"  [(ngModel)]="activeAverage" >
+      Active Mean
+    </label>
+
+    <label> <input type="checkbox" name="active"  (ngModelChange)="onChangePercentileCheckBox($event)" [(ngModel)]="percentileTopN" > Percentile Top: <span> {{percentileInput}} </span> </label>
+    <span> 1 </span>
+    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" [(ngModel)]="percentileInput" (change)="onChangePercentileInput($event)" [disabled]="!percentileTopN">
+    <span> 100 </span>
+
+
+    <label> <input type="checkbox" name="active" (ngModelChange)="onChangePercentileCheckBox($event)"  [(ngModel)]="percentileBottomN" > Percentile Bottom: <span> {{percentileInput2}} </span> </label>
+    <span> 1 </span>
+    <input type="range" min="1" max="100" value="50" class="slider"  [(ngModel)]="percentileInput2" (change)="onChangePercentileInput2($event)" [disabled]="!percentileBottomN">
+    <span> 100 </span>
+  </div>
+
+    <div class="slidecontainer column" >
+      <label > T Test: P value - {{PVal}} </label>
+      <select [(ngModel)]="tTestInput.dimension1" >
+        <option  *ngFor="let field of allStimuli" [attr.value]=field>{{field}} </option>
+      </select>
+      <select [(ngModel)]="tTestInput.dimension2" >
+        <option  *ngFor="let field of allStimuli" [attr.value]=field>{{field}} </option>
+      </select>
+      <button (click)="tTest()">Run Ttest</button>
+
+
+    </div>
+  </div>
+</div>
