@@ -31,10 +31,17 @@ export class TableComponent implements OnInit {
 
   }
 
+
+
+  //This function takes input a row of data to highlight
   rowClick(data:any):void
   {
-    this.selection.selectValue(data)
+    this.selection.selectValue([data])
   }
+
+
+
+
 
 
 }

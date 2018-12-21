@@ -46,7 +46,7 @@ export class BarchartComponent implements OnInit {
     this.selection.selectedWorkerId.subscribe((value) => {
 
       console.log(value)
-      this.createChart([value])
+      this.createChart(value)
 
 
     });
@@ -54,19 +54,22 @@ export class BarchartComponent implements OnInit {
 
   }
 
+
+
+  //THis function enters, updates and removes the data points from the
   createChart(data)
   {
 
     // define X & Y domains
-    let xDomain = this.data.map(d => d.workerid);
-    let yDomain = [0, d3.max(this.data, d => d.accuracy)];
+    let xDomain = data.map(d => d.workerid);
+    let yDomain = [0, d3.max(data, d => d.accuracy)];
 
     // create scales
     this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
     this.yScale = d3.scaleLinear().domain(yDomain).range([this.height, 0]);
 
     // bar colors
-    this.colors = d3.scaleLinear().domain([0, this.data.length]).range(<any[]>['red', 'blue']);
+    this.colors = d3.scaleLinear().domain([0, data.length]).range(<any[]>['red', 'blue']);
 
     // x & y axis
     this.xAxis=d3.select(".axis-x").attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`).call(d3.axisBottom(this.xScale))
@@ -75,7 +78,7 @@ export class BarchartComponent implements OnInit {
 
 
     //drawing bar colors
-    let bars=this.svg.selectAll("rect").data(data)
+    this.bars=this.svg.selectAll("rect").data(data)
       .attr("x", d => {
         return this.xScale(d.workerid)+this.margin.left })
       .attr("y", d => this.yScale(d.accuracy)+this.margin.top)
@@ -83,14 +86,14 @@ export class BarchartComponent implements OnInit {
       .attr("height", d =>  this.height-this.yScale(d.accuracy) )
       .attr("fill","steelblue");
 
-    bars.enter().append("rect").attr("x", d => {
+    this.bars.enter().append("rect").attr("x", d => {
       return this.xScale(d.workerid)+this.margin.left })
       .attr("y", d => this.yScale(d.accuracy)+this.margin.top)
       .attr("width", this.xScale.bandwidth())
       .attr("height", d =>  this.height-this.yScale(d.accuracy) )
       .attr("fill","steelblue");
 
-     bars.exit().remove();
+     this.bars.exit().remove();
 
 
   }

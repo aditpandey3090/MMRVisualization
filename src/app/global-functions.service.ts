@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';  // we need to import this now
 import {Http} from '@angular/http';
 
-
+//Todo: Input json file needs a data processor: the data processor needs to address the needs of precprocessing data file information
+//Todo: Remove redundant data rows
+//Todo: Convert female to f and male to m
 
 @Injectable()
 export class GlobalFunctionsService {
@@ -12,8 +14,6 @@ export class GlobalFunctionsService {
 
 
   constructor(private _http:Http) { }
-
-
 
   //Param: Name of the file to read
   //Returns: Data file in a json format
